@@ -7,8 +7,21 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class WelcomeInterface {
+
+    static final String LOGIN = "1";
+    static final String REGISTER = "2";
+    static final String FORGET_PASSWORD = "3";
+    static final String EXIT = "4";
+
+    static ArrayList<User> list = new ArrayList<>();
+
+    static {
+        list.add(new User("ryan","123456","111111222222224444","login@email.uk.edu"));
+    }
+
     public static void main(String[] args) {
-        ArrayList<User> list = new ArrayList<>();
+
+
         while (true) {
             System.out.println("-----------WELCOME TO STUDENTS MANAGEMENT SYSTEM----------------");
             System.out.println("1: login");
@@ -21,10 +34,10 @@ public class WelcomeInterface {
             String choose = sc.next();
 
             switch (choose){
-                case "1" -> login(list);
-                case "2" -> register(list);
-                case "3" -> forgetPassword(list);
-                case "4" -> {
+                case LOGIN -> login(list);
+                case REGISTER -> register(list);
+                case FORGET_PASSWORD -> forgetPassword(list);
+                case EXIT -> {
                     System.out.println("exit");
                     System.exit(0);
                 }
@@ -182,11 +195,11 @@ public class WelcomeInterface {
 
     }
 
-    public static boolean containsUsername(ArrayList<User> list , String name) {
+    public static boolean containsUsername(ArrayList<User> list, String name) {
         return getIndex(list,name)>=0 ;
     }
 
-    public static int getIndex(ArrayList<User> list , String name){
+    public static int getIndex(ArrayList<User> list, String name){
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equals(name)){
                 return i;
