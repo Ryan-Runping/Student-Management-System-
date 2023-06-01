@@ -5,7 +5,14 @@ import java.util.Scanner;
 
 public class ManagementSystem {
 
-    public static void manageInterface() {
+    public void manageInterface() {
+
+        final String ADD_STUDENT = "1";
+        final String DELETE_STUDENT = "2";
+        final String UPDATE_STUDENT = "3";
+        final String QUERY_STUDENT = "4";
+        final String EXIT = "5";
+
         ArrayList<Student> list = new ArrayList<>();
 
        loop: while (true) {
@@ -19,11 +26,11 @@ public class ManagementSystem {
             Scanner sc = new Scanner(java.lang.System.in);
             String choose =  sc.next();
             switch (choose){
-                case "1" -> addStudent(list);
-                case "2" -> deleteStudent(list);
-                case "3" -> updateStudent(list);
-                case "4" -> queryStudent(list);
-                case "5" -> {
+                case ADD_STUDENT -> addStudent(list);
+                case DELETE_STUDENT -> deleteStudent(list);
+                case UPDATE_STUDENT -> updateStudent(list);
+                case QUERY_STUDENT -> queryStudent(list);
+                case EXIT -> {
                     System.out.println("exit");
                               break loop;}
                 default -> System.out.println("the number you input is wrong");
@@ -31,7 +38,7 @@ public class ManagementSystem {
         }
     }
 
-    public static void addStudent(ArrayList<Student> list){
+    public void addStudent(ArrayList<Student> list){
         System.out.println("add student");
         //add new student
         Scanner sc = new Scanner(System.in);
@@ -61,7 +68,7 @@ public class ManagementSystem {
 
     }
 
-    public static void deleteStudent(ArrayList<Student> list){
+    public void deleteStudent(ArrayList<Student> list){
         Scanner sc = new Scanner(System.in);
         System.out.println("please input the student's ID you want to delete");
         String id = sc.next();
@@ -77,7 +84,7 @@ public class ManagementSystem {
 
     }
 
-    public static void updateStudent(ArrayList<Student> list){
+    public void updateStudent(ArrayList<Student> list){
         Scanner sc = new Scanner(System.in);
         System.out.println("please input the student's ID you want to update");
         String id = sc.next();
@@ -100,7 +107,7 @@ public class ManagementSystem {
         }
     }
 
-    public static void queryStudent(ArrayList<Student> list){
+    public void queryStudent(ArrayList<Student> list){
         System.out.println("query student");
         if (list.size() == 0){
             System.out.println("There is no student currently! Please add students first ");
@@ -116,14 +123,14 @@ public class ManagementSystem {
     }
 
     //detect if id is unique
-    public static boolean contains(ArrayList<Student> list, String id){
+    public boolean contains(ArrayList<Student> list, String id){
         boolean result;
         result = getIndex(list,id) >= 0 ;
         return result;
     }
 
     //get list index by student id, if not exist ,return -1
-    public static int getIndex (ArrayList<Student> list, String id){
+    public int getIndex (ArrayList<Student> list, String id){
         Student stu = new Student();
         for (int i = 0; i < list.size(); i++) {
             stu = list.get(i);
